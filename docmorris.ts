@@ -17,10 +17,10 @@ async function main() {
   try {
     const html = await request.post(
       // `http://api.scraperapi.com/?api_key=${process.env.SCRAPE_API_KEY}&url=${url}${JSRender}`,
-      url,
+      // url,
       // url3,
       // `http://api.scraperapi.com/?api_key=${process.env.SCRAPE_API_KEY}&url=${url3}${JSRender}`,
-      // `http://api.scraperapi.com/?api_key=${process.env.SCRAPE_API_KEY}&url=https://accounts.craigslist.org/login/onetime&render=true`,
+      `http://api.scraperapi.com/?api_key=${process.env.SCRAPE_API_KEY}&url=${url}&render=true`,
       {
         form: {
           login_username: "phouee78",

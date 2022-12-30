@@ -2,6 +2,8 @@ import request from "request-promise";
 import dotenv from "dotenv";
 import fs from "fs";
 
+// To allow for cookie storage
+const requestjar = request.defaults({ jar: true });
 dotenv.config();
 
 const JSRender = "&render=true";
@@ -14,12 +16,12 @@ const url5 =
 
 async function main() {
   try {
-    const html = await request.post(
+    const html = await requestjar.post(
       // `http://api.scraperapi.com/?api_key=${process.env.SCRAPE_API_KEY}&url=${url}${JSRender}`,
       url,
       // url3,
       // `http://api.scraperapi.com/?api_key=${process.env.SCRAPE_API_KEY}&url=${url3}${JSRender}`,
-      // `http://api.scraperapi.com/?api_key=${process.env.SCRAPE_API_KEY}&url=https://accounts.craigslist.org/login/onetime&render=true`,
+      // `http://api.scraperapi.com/?api_key=${process.env.SCRAPE_API_KEY}&url=${url}&render=true`,
       {
         form: {
           inputEmailHandle: "houee.pierrick@gmail.com",
@@ -33,7 +35,7 @@ async function main() {
         // Allows redirects
         followAllRedirects: true,
         // Allows cookies storage
-        jar: true,
+        // jar: true,
       }
     );
     fs.writeFileSync("./login.html", html);
